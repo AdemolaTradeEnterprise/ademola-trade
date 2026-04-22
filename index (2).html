@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ademola Trade Enterprise — Digital Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --card: #18181f;
+    --border: #2a2a38;
+    --accent: #f0c040;
+    --accent2: #5af0c4;
+    --text: #f0ede8;
+    --muted: #7a7a96;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(240,192,64,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240,192,64,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .brand::before, .brand::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 10vw, 88px);
+    line-height: 0.9;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  h1 span { color: var(--accent); }
+
+  .tagline {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+
+  .tagline strong { color: var(--text); font-weight: 500; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 36px 28px;
+    text-decoration: none;
+    text-align: left;
+    display: block;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--card-accent, var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .service-card:hover { background: #1c1c26; border-color: #3a3a50; }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .card-web { --card-accent: var(--accent); }
+  .card-social { --card-accent: var(--accent2); }
+
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .card-web .card-tag {
+    color: var(--accent);
+    background: rgba(240,192,64,0.08);
+    border: 1px solid rgba(240,192,64,0.2);
+  }
+
+  .card-social .card-tag {
+    color: var(--accent2);
+    background: rgba(90,240,196,0.08);
+    border: 1px solid rgba(90,240,196,0.2);
+  }
+
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .card-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+
+  .card-web .card-price { color: var(--accent); }
+  .card-social .card-price { color: var(--accent2); }
+
+  .card-delivery {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .card-arrow {
+    position: absolute;
+    top: 36px;
+    right: 28px;
+    font-size: 20px;
+    color: var(--border);
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .service-card:hover .card-arrow {
+    color: var(--muted);
+    transform: translate(3px, -3px);
+  }
+
+  .bundle-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 24px 28px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    transition: background 0.2s;
+  }
+
+  .bundle-card:hover { background: #16161f; }
+
+  .bundle-left h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .bundle-left p {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .bundle-left p strong { color: var(--accent2); font-weight: 500; }
+
+  .bundle-right {
+    text-align: right;
+  }
+
+  .bundle-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .bundle-save {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+  }
+
+  .audit-strip {
+    margin-top: 32px;
+    padding: 20px 24px;
+    background: rgba(90,240,196,0.04);
+    border: 1px solid rgba(90,240,196,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .audit-strip p {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .audit-strip p strong { color: var(--text); font-weight: 500; }
+
+  .audit-btn {
+    display: inline-block;
+    background: var(--accent2);
+    color: #0a0a0f;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.06em;
+    padding: 10px 24px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .audit-btn:hover { opacity: 0.85; }
+
+  .footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .footer a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer a:hover { color: var(--accent2); }
+
+  @media (max-width: 520px) {
+    .cards { grid-template-columns: 1fr; }
+    .bundle-card { flex-direction: column; align-items: flex-start; }
+    .bundle-right { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="brand">Ademola Trade Enterprise</div>
+
+  <h1>WE BUILD.<br><span>YOU GROW.</span></h1>
+  <p class="tagline"><strong>Done-for-you digital services</strong> for DFW small businesses.<br>Professional results delivered in 3 business days.</p>
+
+  <div class="cards">
+    <a href="ATE_Website_Offer.html" class="service-card card-web">
+      <span class="card-arrow">↗</span>
+      <div class="card-tag">Service 01</div>
+      <div class="card-title">Website Build</div>
+      <p class="card-desc">5-page professional site, mobile-ready, SEO set up, custom copy — fully done for you.</p>
+      <div class="card-price">$2,500</div>
+      <div class="card-delivery">Delivered in 3 business days</div>
+    </a>
+    <a href="ATE_Social_Media_Offer.html" class="service-card card-social">
+      <span class="card-arrow">↗</span>
+      <div class="card-tag">Service 02</div>
+      <div class="card-title">Social Media</div>
+      <p class="card-desc">30 days of content, graphics, captions, scheduling — across up to 3 platforms.</p>
+      <div class="card-price">$2,500</div>
+      <div class="card-delivery">Calendar delivered in 3 business days</div>
+    </a>
+  </div>
+
+  <a href="ATE_Audit_Form.html" class="bundle-card">
+    <div class="bundle-left">
+      <h3>Website + Social Media Bundle</h3>
+      <p>Both services together — <strong>save $500</strong> and get your entire online presence handled at once.</p>
+    </div>
+    <div class="bundle-right">
+      <div class="bundle-price">$4,500</div>
+      <div class="bundle-save">↑ BEST VALUE</div>
+    </div>
+  </a>
+
+  <div class="audit-strip">
+    <p>Not sure where to start? <strong>Get a free audit of your current online presence</strong> — no charge, no obligation.</p>
+    <a href="ATE_Audit_Form.html" class="audit-btn">Book Free Audit →</a>
+  </div>
+
+  <div class="footer">
+    <a href="tel:6822884710">(682) 288-4710</a>
+    <a href="mailto:info@ademolate.com">info@ademolate.com</a>
+    <a href="https://www.linkedin.com/in/enochadem ola" target="_blank">LinkedIn</a>
+  </div>
+
+</div>
+</body>
+</html>
