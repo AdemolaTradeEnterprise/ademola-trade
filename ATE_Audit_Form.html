@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Free Audit — Ademola Trade Enterprise</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --card: #18181f;
+    --border: #2a2a38;
+    --border-focus: #5af0c4;
+    --accent: #f0c040;
+    --accent2: #5af0c4;
+    --text: #f0ede8;
+    --muted: #7a7a96;
+    --error: #f05a5a;
+    --success: #5af0c4;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(90,240,196,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(90,240,196,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  /* Header */
+  .form-header {
+    margin-bottom: 36px;
+  }
+
+  .brand-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-line::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .form-header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 8vw, 64px);
+    line-height: 0.92;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .form-header h1 span { color: var(--accent2); }
+
+  .form-header p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .form-header p strong { color: var(--text); font-weight: 500; }
+
+  /* Free badge */
+  .free-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(90,240,196,0.07);
+    border: 1px solid rgba(90,240,196,0.2);
+    padding: 8px 16px;
+    margin-bottom: 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .free-badge::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* Form card */
+  .form-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 36px;
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  label span {
+    color: var(--accent);
+    margin-left: 2px;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    padding: 13px 16px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: var(--muted);
+    opacity: 0.6;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(90,240,196,0.08);
+  }
+
+  input.error, select.error, textarea.error {
+    border-color: var(--error);
+  }
+
+  .error-msg {
+    font-size: 11px;
+    color: var(--error);
+    margin-top: 5px;
+    font-family: 'DM Mono', monospace;
+    display: none;
+  }
+
+  .error-msg.show { display: block; }
+
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7a96' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+
+  select option { background: #18181f; }
+
+  textarea { resize: vertical; min-height: 96px; line-height: 1.6; }
+
+  .row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* Service checkboxes */
+  .service-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .service-option {
+    position: relative;
+  }
+
+  .service-option input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .service-option label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0;
+    text-transform: none;
+    transition: all 0.15s;
+    margin: 0;
+  }
+
+  .service-option label::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    border: 1px solid var(--border);
+    background: transparent;
+    transition: all 0.15s;
+  }
+
+  .service-option input:checked + label {
+    border-color: var(--accent2);
+    color: var(--text);
+    background: rgba(90,240,196,0.05);
+  }
+
+  .service-option input:checked + label::before {
+    background: var(--accent2);
+    border-color: var(--accent2);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l3 3 5-6' stroke='%230a0a0f' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .service-bundle {
+    grid-column: span 2;
+  }
+
+  /* Submit */
+  .submit-btn {
+    width: 100%;
+    background: var(--accent);
+    color: #0a0a0f;
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    padding: 16px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .submit-btn:hover { opacity: 0.9; }
+  .submit-btn:active { transform: scale(0.99); }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .submit-btn .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(10,10,15,0.3);
+    border-top-color: #0a0a0f;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: none;
+  }
+
+  .submit-btn.loading .spinner { display: block; }
+  .submit-btn.loading .btn-text { display: none; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .fine-print {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  /* Success state */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 48px 36px;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+
+  .success-screen.show { display: block; }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(90,240,196,0.1);
+    border: 1px solid rgba(90,240,196,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+  }
+
+  .success-icon svg { stroke: var(--accent2); }
+
+  .success-screen h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .success-screen p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 380px;
+    margin: 0 auto 24px;
+  }
+
+  .success-screen p strong { color: var(--accent2); }
+
+  .what-next {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    text-align: left;
+    margin-top: 24px;
+  }
+
+  .what-next h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .next-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .next-step:last-child { margin-bottom: 0; }
+
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    min-width: 20px;
+    margin-top: 1px;
+  }
+
+  /* Footer */
+  .form-footer {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .form-footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .form-footer a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.15s;
+  }
+
+  .form-footer a:hover { color: var(--accent2); }
+
+  @media (max-width: 480px) {
+    .form-card { padding: 24px 20px; }
+    .row-2 { grid-template-columns: 1fr; }
+    .service-grid { grid-template-columns: 1fr; }
+    .service-bundle { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="form-header">
+    <div class="brand-line">Ademola Trade Enterprise</div>
+    <h1>BOOK YOUR<br><span>FREE AUDIT</span></h1>
+    <p>Takes <strong>2 minutes</strong> to fill out. We'll review your online presence and call you back within <strong>24 hours</strong> with real insights — no charge, no obligation.</p>
+  </div>
+
+  <div class="free-badge">100% Free — No Credit Card Required</div>
+
+  <!-- FORM -->
+  <div class="form-card" id="formCard">
+    <form id="auditForm" novalidate>
+
+      <div class="row-2">
+        <div class="field">
+          <label>Your Name <span>*</span></label>
+          <input type="text" id="name" placeholder="John Smith" autocomplete="name">
+          <div class="error-msg" id="nameErr">Please enter your name</div>
+        </div>
+        <div class="field">
+          <label>Business Name <span>*</span></label>
+          <input type="text" id="business" placeholder="Smith's Plumbing" autocomplete="organization">
+          <div class="error-msg" id="businessErr">Please enter your business name</div>
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label>Phone Number <span>*</span></label>
+          <input type="tel" id="phone" placeholder="(682) 000-0000" autocomplete="tel">
+          <div class="error-msg" id="phoneErr">Please enter a valid phone number</div>
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="you@business.com" autocomplete="email">
+          <div class="error-msg" id="emailErr">Please enter a valid email</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Industry / Type of Business <span>*</span></label>
+        <select id="industry">
+          <option value="" disabled selected>Select your industry...</option>
+          <option>Restaurant / Food & Beverage</option>
+          <option>Hair Salon / Beauty</option>
+          <option>Contractor / Handyman / Remodeling</option>
+          <option>Retail / Boutique</option>
+          <option>Health & Wellness / Fitness</option>
+          <option>Real Estate</option>
+          <option>Professional Services (Legal, Finance, etc.)</option>
+          <option>Photography / Creative</option>
+          <option>Auto / Transportation</option>
+          <option>Other</option>
+        </select>
+        <div class="error-msg" id="industryErr">Please select your industry</div>
+      </div>
+
+      <div class="field">
+        <label>Which service are you interested in? <span>*</span></label>
+        <div class="service-grid" id="serviceGrid">
+          <div class="service-option">
+            <input type="checkbox" id="svc-web" value="Website Build ($2,500)">
+            <label for="svc-web">Website Build — $2,500</label>
+          </div>
+          <div class="service-option">
+            <input type="checkbox" id="svc-social" value="Social Media Management ($2,500)">
+            <label for="svc-social">Social Media Mgmt — $2,500</label>
+          </div>
+          <div class="service-option service-bundle">
+            <input type="checkbox" id="svc-bundle" value="Website + Social Bundle ($4,500)">
+            <label for="svc-bundle">Website + Social Bundle — $4,500 (save $500)</label>
+          </div>
+        </div>
+        <div class="error-msg" id="serviceErr">Please select at least one service</div>
+      </div>
+
+      <div class="field">
+        <label>Do you currently have a website or social media?</label>
+        <select id="current">
+          <option value="" disabled selected>Select current status...</option>
+          <option>No website, no social media</option>
+          <option>I have social media but no website</option>
+          <option>I have a website but no active social media</option>
+          <option>I have both but they need improvement</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Anything else we should know?</label>
+        <textarea id="notes" placeholder="Tell us about your business, your goals, or any specific challenges you're facing..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <span class="btn-text">Book My Free Audit →</span>
+        <div class="spinner"></div>
+      </button>
+
+      <p class="fine-print">By submitting, you agree to be contacted by Ademola Trade Enterprise at the phone/email provided. We never share your information.</p>
+
+    </form>
+  </div>
+
+  <!-- SUCCESS SCREEN -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 14l6 6 12-12"/>
+      </svg>
+    </div>
+    <h2>YOU'RE BOOKED IN.</h2>
+    <p>Thanks, <strong id="successName"></strong>! Your free audit request has been received. Enoch will call you at <strong id="successPhone"></strong> within <strong>24 hours.</strong></p>
+
+    <div class="what-next">
+      <h4>What Happens Next</h4>
+      <div class="next-step">
+        <span class="step-num">01</span>
+        <span>We review your current online presence before the call so we come prepared with real insights.</span>
+      </div>
+      <div class="next-step">
+        <span class="step-num">02</span>
+        <span>Enoch calls you — quick 15-minute conversation about your business and goals.</span>
+      </div>
+      <div class="next-step">
+        <span class="step-num">03</span>
+        <span>We send you a clear action plan. If you want to move forward, we get started the same day.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-footer">
+    <p>ADEMOLA TRADE ENTERPRISE · DFW AREA</p>
+    <div style="display:flex; gap:20px;">
+      <a href="tel:6822884710">(682) 288-4710</a>
+      <a href="mailto:info@ademolate.com">info@ademolate.com</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const form = document.getElementById('auditForm');
+  const submitBtn = document.getElementById('submitBtn');
+
+  function show(id) { document.getElementById(id).classList.add('show'); }
+  function hide(id) { document.getElementById(id).classList.remove('show'); }
+  function setError(fieldId, errId, show) {
+    const el = document.getElementById(fieldId);
+    const err = document.getElementById(errId);
+    if (show) { el.classList.add('error'); err.classList.add('show'); }
+    else { el.classList.remove('error'); err.classList.remove('show'); }
+  }
+
+  function validate() {
+    let valid = true;
+
+    const name = document.getElementById('name').value.trim();
+    setError('name', 'nameErr', !name);
+    if (!name) valid = false;
+
+    const biz = document.getElementById('business').value.trim();
+    setError('business', 'businessErr', !biz);
+    if (!biz) valid = false;
+
+    const phone = document.getElementById('phone').value.trim();
+    const phoneOk = /[\d\s\-\(\)]{7,}/.test(phone);
+    setError('phone', 'phoneErr', !phoneOk);
+    if (!phoneOk) valid = false;
+
+    const email = document.getElementById('email').value.trim();
+    if (email) {
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      setError('email', 'emailErr', !emailOk);
+      if (!emailOk) valid = false;
+    }
+
+    const industry = document.getElementById('industry').value;
+    setError('industry', 'industryErr', !industry);
+    if (!industry) valid = false;
+
+    const services = [...document.querySelectorAll('#serviceGrid input:checked')].map(c => c.value);
+    const svcErr = document.getElementById('serviceErr');
+    const svcGrid = document.getElementById('serviceGrid');
+    if (!services.length) {
+      svcGrid.style.outline = '1px solid var(--error)';
+      svcErr.classList.add('show');
+      valid = false;
+    } else {
+      svcGrid.style.outline = 'none';
+      svcErr.classList.remove('show');
+    }
+
+    return valid;
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (!validate()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+
+    const name = document.getElementById('name').value.trim();
+    const business = document.getElementById('business').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const industry = document.getElementById('industry').value;
+    const services = [...document.querySelectorAll('#serviceGrid input:checked')].map(c => c.value).join(', ');
+    const current = document.getElementById('current').value || 'Not specified';
+    const notes = document.getElementById('notes').value.trim() || 'None';
+
+    const subject = encodeURIComponent(`🔔 New Audit Request — ${name} | ${business}`);
+    const body = encodeURIComponent(
+`NEW FREE AUDIT REQUEST
+======================
+Name:        ${name}
+Business:    ${business}
+Phone:       ${phone}
+Email:       ${email || 'Not provided'}
+Industry:    ${industry}
+Service(s):  ${services}
+Current:     ${current}
+Notes:       ${notes}
+
+-- Submitted via Ademola Trade Enterprise Audit Form`
+    );
+
+    // Show success immediately (mailto fallback)
+    await new Promise(r => setTimeout(r, 900));
+
+    document.getElementById('successName').textContent = name.split(' ')[0];
+    document.getElementById('successPhone').textContent = phone;
+    document.getElementById('formCard').style.display = 'none';
+    document.getElementById('successScreen').classList.add('show');
+
+    // Open mailto
+    window.location.href = `mailto:info@ademolate.com?subject=${subject}&body=${body}`;
+  });
+
+  // Live clear errors on input
+  ['name','business','phone','email','industry'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', () => {
+      el.classList.remove('error');
+      const errEl = document.getElementById(id + 'Err');
+      if (errEl) errEl.classList.remove('show');
+    });
+  });
+</script>
+
+</body>
+</html>
